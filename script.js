@@ -2,7 +2,6 @@
 //     console.log('Random Number', randomNumber)
 // const myGuess = Number(prompt('Enter a number between 1 and 2..'))
 let range = 2;
-const randomNumber = Math.floor(Math.random() * range) + 1;
 let userName = prompt("Enter a username");
 
 function setCookie(cname, cvalue, exdays) {
@@ -19,6 +18,7 @@ let score = 0;
 let stage = 1;
 
 function checkGuess(range) {
+  const randomNumber = Math.floor(Math.random() * range) + 1;
   console.log("Random Number", randomNumber);
 
   const myGuess = Number(prompt(`Enter a number between 1 and ${range} ..`));
@@ -26,13 +26,14 @@ function checkGuess(range) {
   if (myGuess === randomNumber) {
     score += 10;
     stage = stage + 1;
+    range = range + 1;
     // setting cookies of the score
     setCookie("score", score, 7);
 
     //console.log('You got it right' );
     alert(`You are correct. You scored is ${score}. Press Enter 
  for Stage ${stage}`);
-    checkGuess(range + 1);
+    checkGuess(range);
   } else if (myGuess > randomNumber) {
     alert(
       `Your guess is ${myGuess} which is greater than the correct number ${randomNumber} `
@@ -46,3 +47,4 @@ function checkGuess(range) {
   }
 }
 checkGuess(range);
+
